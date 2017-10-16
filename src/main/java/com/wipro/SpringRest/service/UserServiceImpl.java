@@ -41,15 +41,9 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-<<<<<<< HEAD
-	public String getById(int id) {
-		userRepository.delete(id);
-		return "Deleted by id Successfully";
-=======
 	public User getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
->>>>>>> 869dea5f5198a2d3831d04aabf36b01ff6fc9652
-	}
+		 User user=userRepository.findOne(id);
+		return user;
 
+	}
 }
