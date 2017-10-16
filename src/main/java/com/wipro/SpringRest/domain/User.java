@@ -6,11 +6,18 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
+	// Intializing varaibles
+	
 	@Id
 	@GeneratedValue
 	private int id;
 	private String name;
 	private String emailId;
+	public User()
+	{
+		
+	}
+	//Creating setters and getters
 	public int getId() {
 		return id;
 	}

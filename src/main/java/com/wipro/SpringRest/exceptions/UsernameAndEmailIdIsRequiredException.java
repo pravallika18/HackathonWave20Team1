@@ -1,4 +1,4 @@
-package com.wipro.SpringRest.exeptions;
+package com.wipro.SpringRest.exceptions;
 
 public class UsernameAndEmailIdIsRequiredException  extends Exception{
 	public UsernameAndEmailIdIsRequiredException(String message)

@@ -1,5 +1,8 @@
 package com.wipro.SpringRest.controllers;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -13,7 +16,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-
 
 import com.wipro.SpringRest.HackathonWave20Team1Application;
 import com.wipro.SpringRest.domain.User;
@@ -46,12 +48,12 @@ public class UserControllerTest {
     }
 
 	@Test
-	public void testAllPlaces() throws Exception{
+	public void testAllUsers() throws Exception{
 		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 
         ResponseEntity<String> response = restTemplate.exchange(
 
-                createURLWithPort("/v0.1/PlaceSearch/places"),
+                createURLWithPort("/v1.0/UserProfile/user"),
 
                 HttpMethod.GET, entity, String.class);
        System.out.println(response);
@@ -64,9 +66,25 @@ public class UserControllerTest {
 
 	        ResponseEntity<String> response = restTemplate.exchange(
 
-	                createURLWithPort("/v0.1/PlaceSearch/places"),
+	                createURLWithPort("/v1.0/UserProfile/user"),
 
 	                HttpMethod.POST, entity, String.class);
+
+	        assertNotNull(response);
+	        
+	        
+
+	    }
+	 @Test
+	    public void testUpdateUser() throws Exception {
+
+	        HttpEntity<User> entity = new HttpEntity<User>(user, headers);
+
+	        ResponseEntity<String> response = restTemplate.exchange(
+
+	                createURLWithPort("/v1.0/UserProfile/user"),
+
+	                HttpMethod.PUT, entity, String.class);
 
 	        assertNotNull(response);
 	        System.out.println(response);
@@ -75,8 +93,45 @@ public class UserControllerTest {
 
 	        System.out.println(actual);
 
-	        assertEquals("Places created successfully",actual);
+	        assertEquals("Successfully user updated",actual);
 
 	    }
+	 @Test
+	    public void testDeleteUser() throws Exception {
+
+	        HttpEntity<User> entity = new HttpEntity<User>(user, headers);
+
+	        ResponseEntity<String> response = restTemplate.exchange(
+
+	                createURLWithPort("/v1.0/UserProfile/user"),
+
+	                HttpMethod.PUT, entity, String.class);
+
+	        assertNotNull(response);
+	        System.out.println(response);
+	        
+	        String actual = response.getBody();
+
+	        System.out.println(actual);
+
+	        assertEquals("User profile deleted",actual);
+
+	    }
+	 @Test
+	    public void testgetUserById() throws Exception {
+
+	        HttpEntity<User> entity = new HttpEntity<User>(user, headers);
+
+	        ResponseEntity<String> response = restTemplate.exchange(
+
+	                createURLWithPort("/v1.0/UserProfile/user/1"),
+
+	                HttpMethod.PUT, entity, String.class);
+
+	        assertNotNull(response);
+	       
+	    }
+	 
+	 
 }
 		
