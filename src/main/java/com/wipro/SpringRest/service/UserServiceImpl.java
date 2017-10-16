@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public User getById(User user) {
+	public User getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

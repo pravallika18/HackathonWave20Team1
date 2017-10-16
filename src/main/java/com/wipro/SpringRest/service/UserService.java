@@ -8,12 +8,12 @@ import com.wipro.SpringRest.domain.User;
 @Service
 public interface UserService  //User Interface to declare the oprating abstract methods
 {
-	public User createProfile(User user);
-	public String updateProfile(User user);
-	public String deleteProfile(User user);
-	public List<User> getAll();
-	public User getById(User user);
-	
-	
+    public User createProfile(User user);
+    public String updateProfile(User user);
+    public String deleteProfile(User user);
+    public List<User> getAll();
+    public User getById(int id);
+    
+    
 
 }
