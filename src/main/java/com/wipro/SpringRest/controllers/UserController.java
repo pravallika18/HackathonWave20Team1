@@ -18,66 +18,47 @@ import com.wipro.SpringRest.service.UserService;
 public class UserController {
 	@Autowired
 	UserService userService;
-	@RequestMapping(method=RequestMethod.GET)
+	
+	 @RequestMapping(method=RequestMethod.GET)
 	   public ResponseEntity<List<User>> getAllUsers()
 		{
 		  	List<User> users=userService.getAll();
 			return ResponseEntity.ok(users);
 		}
 	  
-	  
-	
 	  @RequestMapping(method=RequestMethod.POST)
 	  public ResponseEntity<User> createUser(@RequestBody User user) 
 	  {
-	      User savedUser=userService.save(user);
+	      User savedUser=userService.createProfile(user);
 	        return ResponseEntity.ok(savedUser);
 		 
 	  	}
 	  
 	  @RequestMapping(method=RequestMethod.PUT)
-	  public ResponseEntity<String> updateExist(@RequestBody Places places)  {
-	   try {
-//		    places.setId(5);
-		    if(placesService.update(places).equals("data Updated successfully")){
-		    return ResponseEntity.ok("updated successfully");
-		    		}
-		    else {
-		    	throw new PlaceNotFoundException("Place not Found to update");
-		    }
-	   } catch (PlaceNotFoundException e) {
-	    return ResponseEntity.ok("Place not Found to update");
-	   }
+	  public ResponseEntity<String> updateUser(@RequestBody User user)  {
+	  
+		  String status=userService.updateProfile(user);
+		  return ResponseEntity.ok(status);
 	 }
 	  
 	  
 	  @RequestMapping(method=RequestMethod.DELETE)
-	  public ResponseEntity<String> deleteById(@RequestBody Places places)  {
-	   try {
-//		    places.setId(5);
-		    if(placesService.delete(places).equals("Deleted succesfully")){
-		    return ResponseEntity.ok("data deleted successfully");
-		    		}
-		    else {
-		    	throw new PlaceNotFoundException("Place not Found to delete");
-		    }
-	   } catch (PlaceNotFoundException e) {
-	    return ResponseEntity.ok("Place not Found to delete");
-	   }
+	  public ResponseEntity<String> deleteUser(@RequestBody User user)  {
+		  String status=userService.deleteProfile(user);
+		  return ResponseEntity.ok(status);
+		  
+	   
 	  }
 
-		@RequestMapping(value="/{id}",method=RequestMethod.GET)
-		/** @PathVariable,(/id?id=1)
-		getById(@Requestparam int id) (/1) **/
-		
-		public ResponseEntity<Places> getById(@PathVariable int id)  {
-			Places place=placesService.findById(id);
+	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+		public ResponseEntity<User> getUserById(@PathVariable int id)  {
+			User user=userService.getById(id);
 			
-			return ResponseEntity.ok(place);
+			return ResponseEntity.ok(user);
 		
 		}
 	}
 
 	
 
-}
+
