@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wipro.SpringRest.domain.User;
+import com.wipro.SpringRest.exeptions.UsernameAndEmailIdIsRequiredException;
 import com.wipro.SpringRest.service.UserService;
 
 @RestController
@@ -27,11 +28,17 @@ public class UserController {
 		}
 	  
 	  @RequestMapping(method=RequestMethod.POST)
-	  public ResponseEntity<User> createUser(@RequestBody User user) 
+	  public ResponseEntity<User> createUser(@RequestBody User user) throws UsernameAndEmailIdIsRequiredException 
 	  {
-	      User savedUser=userService.createProfile(user);
-	        return ResponseEntity.ok(savedUser);
-		 
+		  if(user.getName().isEmpty()||user.getEmailId().isEmpty())
+		  {
+			  throw new UsernameAndEmailIdIsRequiredException("User name and EmailId is mandatory to create user profile");
+		  }
+		  else {
+			  User savedUser=userService.createProfile(user);
+		        return ResponseEntity.ok(savedUser);
+		  }
+	      
 	  	}
 	  
 	  @RequestMapping(method=RequestMethod.PUT)

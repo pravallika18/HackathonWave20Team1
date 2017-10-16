@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.wipro.SpringRest.domain.User;
 import com.wipro.SpringRest.repository.UserRepository;
+
 @Component
 public class UserServiceImpl implements UserService 
 {
 
 	@Autowired
 	UserRepository userRepository;
+	
 	@Override
 	public User createProfile(User user) {
 		
@@ -30,7 +32,7 @@ public class UserServiceImpl implements UserService
 	public String deleteProfile(User user) {
 		
 		userRepository.delete(user);
-		return "User profile daleted";
+		return "User profile deleted";
 	}
 
 	@Override
