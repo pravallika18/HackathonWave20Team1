@@ -1,5 +1,9 @@
 package com.wipro.SpringRest.repository;
 
-public interface UserRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import com.wipro.SpringRest.domain.User;
+
+public interface UserRepository extends CrudRepository<User, Integer>{
 
 }

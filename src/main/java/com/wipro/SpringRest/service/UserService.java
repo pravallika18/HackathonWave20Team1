@@ -12,7 +12,7 @@ public interface UserService  //User Interface to declare the oprating abstract 
 	public String updateProfile(User user);
 	public String deleteProfile(User user);
 	public List<User> getAll();
-	public User getById(User user);
+	public String getById(int id);
 	
 	
 
