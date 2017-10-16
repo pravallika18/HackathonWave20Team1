@@ -14,7 +14,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.StackRoute.Goplaces.domain.Places;
+
 import com.wipro.SpringRest.HackathonWave20Team1Application;
 import com.wipro.SpringRest.domain.User;
 @RunWith(SpringRunner.class)
