@@ -20,7 +20,7 @@ import com.wipro.SpringRest.service.UserService;
 public class UserController {
 	@Autowired
 	UserService userService;
-	//when we pass GET Request from we with specified path in Request mapping,this method will get executed
+	//when we pass GET Requestwith specified path in Request mapping,this method will get executed
 	 @RequestMapping(method=RequestMethod.GET)
 	   public ResponseEntity<List<User>> getAllUsers()
 		{
@@ -28,7 +28,7 @@ public class UserController {
 			return ResponseEntity.ok(users);
 		}
 	  
-	//when we pass POST Request from we with specified path in Request mapping,this method will get executed
+	//when we pass POST Request with specified path in Request mapping,this method will get executed
 	  @RequestMapping(method=RequestMethod.POST)
 	  public ResponseEntity<String> createUser(@RequestBody User user)  
 	  {
@@ -58,7 +58,7 @@ public class UserController {
 		  return ResponseEntity.ok(status);
 	  	}
 	  
-	//when we pass PUT Request from we with specified path in Request mapping,this method will get executed
+	//when we pass PUT Request  specified path in Request mapping,this method will get executed
 	  @RequestMapping(method=RequestMethod.PUT)
 	  public ResponseEntity<String> updateUser(@RequestBody User user) throws Exception  {
 	  
@@ -66,7 +66,7 @@ public class UserController {
 		  return ResponseEntity.ok("Successfully user updated");
 	 }
 	  
-	//when we pass DELETE Request from we with specified path in Request mapping,this method will get executed
+	//when we pass DELETE Request with specified path in Request mapping,this method will get executed
 	  @RequestMapping(method=RequestMethod.DELETE)
 	  public ResponseEntity<String> deleteUser(@RequestBody User user)  {
 		  String status=userService.deleteProfile(user);
@@ -74,7 +74,7 @@ public class UserController {
 		  
 	   
 	  }
-	//when we pass GET Request from we with specified path in Request mapping by id,this method will get executed
+	//when we pass GET Request with specified path in Request mapping by id,this method will get executed
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 		public ResponseEntity<User> getUserById(@PathVariable int id)  {
 			User user=userService.getById(id);
@@ -82,6 +82,7 @@ public class UserController {
 			return ResponseEntity.ok(user);
 		
 		}
+	
 	}
 
 	
