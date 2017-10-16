@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wipro.SpringRest.domain.User;
+import com.wipro.SpringRest.exceptions.UserAlreadyExistException;
 import com.wipro.SpringRest.exceptions.UsernameAndEmailIdIsRequiredException;
 import com.wipro.SpringRest.service.UserService;
 
@@ -29,18 +30,32 @@ public class UserController {
 	  
 	//when we pass POST Request from we with specified path in Request mapping,this method will get executed
 	  @RequestMapping(method=RequestMethod.POST)
-	  public ResponseEntity<User> createUser(@RequestBody User user) throws Exception 
+	  public ResponseEntity<String> createUser(@RequestBody User user)  
 	  {
+		  String status="";
+	  
+		  try {
 		  if(user.getName().isEmpty()||user.getEmailId().isEmpty())
 		  {
 			  throw new UsernameAndEmailIdIsRequiredException("User name and EmailId is mandatory to create user profile");
 		  }
 		  else {
-			  
+			  try {
 			  User savedUser=userService.createProfile(user);
-		        return ResponseEntity.ok(savedUser);
+			  status="User saved successfully";
+			  }
+			   catch (Exception e) {
+				  status="User Already Exist";
+			}
+		        
 		  }
-	      
+		  }
+		  catch(UsernameAndEmailIdIsRequiredException ex)
+		  {
+			  status="User name and EmailId is mandatory to create user profile";
+		  }
+		  
+		  return ResponseEntity.ok(status);
 	  	}
 	  
 	//when we pass PUT Request from we with specified path in Request mapping,this method will get executed
